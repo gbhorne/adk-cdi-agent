@@ -12,6 +12,8 @@ A production-grade agentic pipeline built on **Google ADK + Gemini** that analyz
 
 The `tool_write_tasks` call (green checkmark) ran the complete CDI-1 through CDI-6 pipeline, identified 6 clinical signals, classified 6 documentation gaps, and wrote 6 FHIR Task resources to the Cloud Healthcare API store.
 
+---
+
 ## What It Does
 
 Clinical Documentation Integrity (CDI) is the discipline of ensuring the medical record accurately reflects the patient's clinical picture. Poor documentation directly affects:
@@ -28,6 +30,9 @@ This agent automates the signal detection and query generation work that CDI spe
 ## Architecture
 
 ![HC-6 CDI Agent Architecture](docs/architecture.svg)
+
+### ADK Web UI — full trace
+![ADK Web UI trace view](docs/adk_web_ui.png)
 
 ---
 
@@ -73,16 +78,15 @@ adk-cdi-agent/
 │       ├── generate_queries.py     # CDI-5: CDI query generation
 │       └── write_tasks.py          # CDI-6: FHIR Tasks + BigQuery + Pub/Sub
 ├── shared/
-│   ├── config.py                   # Environment config
 │   ├── models.py                   # Pydantic data models
 │   ├── fhir_client.py              # Cloud Healthcare API client
 │   └── bigquery_client.py          # BigQuery streaming insert client
 ├── scripts/
-│   ├── load_test_encounter.py      # Load James Thornton synthetic FHIR data
-│   ├── test_unit.py                # Unit tests
-│   └── test_integration.py        # Integration tests (live GCP)
+│   └── test_unit.py                # Unit tests
 └── data/signal_taxonomy/           # Signal category reference JSON
 ```
+
+> Infrastructure config, setup scripts, and environment files are not included in this public repo.
 
 ---
 
@@ -103,18 +107,6 @@ CDIPipelineResult   # CDI-6 output: pipeline summary
 
 Signals with confidence `>= 0.7` generate physician-facing FHIR Task resources.
 Signals with confidence `< 0.7` are written to Firestore (`cdi_query_history`) for internal CDI specialist review only. This prevents noise and builds CDI specialist trust in the system.
-
----
-
-## Medical Disclaimer
-
-This project is a portfolio demonstration built for educational and research purposes only. It is not a certified medical device, clinical decision support system, or approved healthcare software product.
-
-The CDI Agent and all outputs it generates, including physician queries, ICD-10 code suggestions, and clinical signal identifications, are not intended to constitute medical advice, clinical diagnosis, or coding guidance for use in actual patient care or billing.
-
-All clinical logic, thresholds, and ICD-10 mappings are approximations based on publicly available CDI guidelines and are not validated against any clinical standard or regulatory framework. Do not use this software to make or influence real patient care decisions, reimbursement decisions, or compliance determinations.
-
-The synthetic patient data included in this repository (James Thornton) is entirely fictitious. Any resemblance to real persons is coincidental.
 
 ---
 
@@ -145,6 +137,18 @@ Synthetic inpatient with designed CDI signal coverage:
 ## Portfolio
 
 Part of a 21-project Healthcare + Security + Retail + Financial AI portfolio built on Google ADK and LangGraph. See the full roadmap at [gbhorne](https://github.com/gbhorne).
+
+---
+
+## Medical Disclaimer
+
+This project is a portfolio demonstration built for educational and research purposes only. It is not a certified medical device, clinical decision support system, or approved healthcare software product.
+
+The CDI Agent and all outputs it generates, including physician queries, ICD-10 code suggestions, and clinical signal identifications, are not intended to constitute medical advice, clinical diagnosis, or coding guidance for use in actual patient care or billing.
+
+All clinical logic, thresholds, and ICD-10 mappings are approximations based on publicly available CDI guidelines and are not validated against any clinical standard or regulatory framework. Do not use this software to make or influence real patient care decisions, reimbursement decisions, or compliance determinations.
+
+The synthetic patient data included in this repository (James Thornton) is entirely fictitious. Any resemblance to real persons is coincidental.
 
 ---
 
