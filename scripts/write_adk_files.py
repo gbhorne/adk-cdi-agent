@@ -1,3 +1,15 @@
+"""
+Run this script to write agents/cdi/agent.py and agents/cdi/adk_agent.py
+with correct UTF-8 encoding and proper sys.path injection for ADK web.
+
+Usage:
+    python scripts/write_adk_files.py
+"""
+import pathlib
+
+ROOT = pathlib.Path(__file__).parent.parent
+
+AGENT_PY = '''\
 from __future__ import annotations
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -111,3 +123,9 @@ root_agent = Agent(
     ),
     tools=[FunctionTool(tool_write_tasks)],
 )
+'''
+
+agent_path = ROOT / "agents" / "cdi" / "agent.py"
+agent_path.write_text(AGENT_PY, encoding="utf-8")
+print(f"Written: {agent_path}")
+print("Done -- restart adk web agents")
