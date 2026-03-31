@@ -100,50 +100,15 @@ Signals with confidence `< 0.7` are written to Firestore (`cdi_query_history`) f
 
 ---
 
-## Quick Start
+## Medical Disclaimer
 
-### Prerequisites
-- GCP project with Cloud Healthcare API, Vertex AI, BigQuery, Pub/Sub, Firestore enabled
-- FHIR R4 store with inpatient encounter data
-- Google AI Studio API key
+This project is a portfolio demonstration built for educational and research purposes only. It is not a certified medical device, clinical decision support system, or approved healthcare software product.
 
-### Setup
+The CDI Agent and all outputs it generates, including physician queries, ICD-10 code suggestions, and clinical signal identifications, are not intended to constitute medical advice, clinical diagnosis, or coding guidance for use in actual patient care or billing.
 
-```bash
-git clone https://github.com/gbhorne/adk-cdi-agent.git
-cd adk-cdi-agent
-pip install -r requirements.txt
-cp .env.example .env
-# Edit .env with your GCP project, FHIR store, and API key
-```
+All clinical logic, thresholds, and ICD-10 mappings are approximations based on publicly available CDI guidelines and are not validated against any clinical standard or regulatory framework. Do not use this software to make or influence real patient care decisions, reimbursement decisions, or compliance determinations.
 
-### Load Test Data
-
-```bash
-python scripts/load_test_encounter.py
-```
-
-### Run Pipeline (CLI)
-
-```bash
-python -c "
-from agents.cdi.agent import run_cdi_pipeline
-import json
-result = run_cdi_pipeline('hc6-encounter-thornton-001')
-print(json.dumps(result.model_dump(), indent=2))
-"
-```
-
-### Run ADK Web UI
-
-```bash
-adk web agents
-```
-
-Open `http://127.0.0.1:8000` and paste:
-```
-Run a CDI analysis for encounter_id=hc6-encounter-thornton-001, patient_id=hc6-patient-thornton-001
-```
+The synthetic patient data included in this repository (James Thornton) is entirely fictitious. Any resemblance to real persons is coincidental.
 
 ---
 
