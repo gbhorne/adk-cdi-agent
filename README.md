@@ -6,6 +6,12 @@ A production-grade agentic pipeline built on **Google ADK + Gemini** that analyz
 
 ---
 
+## ADK Web UI
+
+![ADK Web UI — CDI analysis: 6 signals, 6 gaps, 6 FHIR Tasks written](docs/HC6_adk_web_ui_cdi_analysis.png)
+
+The `tool_write_tasks` call (green checkmark) ran the complete CDI-1 through CDI-6 pipeline, identified 6 clinical signals, classified 6 documentation gaps, and wrote 6 FHIR Task resources to the Cloud Healthcare API store.
+
 ## What It Does
 
 Clinical Documentation Integrity (CDI) is the discipline of ensuring the medical record accurately reflects the patient's clinical picture. Poor documentation directly affects:
