@@ -1,0 +1,107 @@
+<svg width="680" height="740" viewBox="0 0 680 740" xmlns="http://www.w3.org/2000/svg" style="background:white;font-family:sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- FHIR Source -->
+  <rect x="230" y="20" width="220" height="48" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="340" y="40" text-anchor="middle" font-size="13" font-weight="600" fill="#085041">Cloud Healthcare API</text>
+  <text x="340" y="58" text-anchor="middle" font-size="11" fill="#0F6E56">FHIR R4 - cdss-fhir-store</text>
+
+  <line x1="340" y1="68" x2="340" y2="104" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- CDI-1 -->
+  <rect x="180" y="104" width="320" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="124" text-anchor="middle" font-size="13" font-weight="600" fill="#26215C">CDI-1 - load_encounter_record</text>
+  <text x="340" y="142" text-anchor="middle" font-size="11" fill="#3C3489">Encounter, Condition, Observation, MedicationRequest, Procedure</text>
+
+  <line x1="340" y1="156" x2="340" y2="190" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- CDI-2 -->
+  <rect x="180" y="190" width="320" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="210" text-anchor="middle" font-size="13" font-weight="600" fill="#26215C">CDI-2 - extract_coded_diagnoses</text>
+  <text x="340" y="228" text-anchor="middle" font-size="11" fill="#3C3489">CodedDiagnosisIndex - ICD-10 + POA flags</text>
+
+  <line x1="340" y1="242" x2="340" y2="276" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- CDI-3 -->
+  <rect x="180" y="276" width="320" height="52" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="340" y="296" text-anchor="middle" font-size="13" font-weight="600" fill="#4A1B0C">CDI-3 - identify_clinical_signals</text>
+  <text x="340" y="314" text-anchor="middle" font-size="11" fill="#993C1D">5 signal categories - hallucination validation</text>
+
+  <!-- Gemini badge CDI-3 -->
+  <rect x="514" y="284" width="130" height="36" rx="6" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="579" y="300" text-anchor="middle" font-size="12" font-weight="600" fill="#412402">Gemini 2.5 Flash</text>
+  <text x="579" y="314" text-anchor="middle" font-size="10" fill="#854F0B">temp=0.1</text>
+  <line x1="500" y1="302" x2="514" y2="302" stroke="#BA7517" stroke-width="1" marker-end="url(#arrow-amber)"/>
+
+  <line x1="340" y1="328" x2="340" y2="362" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- CDI-4 -->
+  <rect x="180" y="362" width="320" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="382" text-anchor="middle" font-size="13" font-weight="600" fill="#26215C">CDI-4 - match_signals_to_diagnoses</text>
+  <text x="340" y="400" text-anchor="middle" font-size="11" fill="#3C3489">Gap classification - confidence gate 0.7</text>
+
+  <!-- Firestore low-confidence branch -->
+  <line x1="180" y1="388" x2="152" y2="388" stroke="#888" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <rect x="22" y="366" width="130" height="44" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="87" y="384" text-anchor="middle" font-size="12" font-weight="600" fill="#2C2C2A">Firestore</text>
+  <text x="87" y="400" text-anchor="middle" font-size="10" fill="#5F5E5A">low-conf signals</text>
+
+  <line x1="340" y1="414" x2="340" y2="448" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- CDI-5 -->
+  <rect x="180" y="448" width="320" height="52" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="340" y="468" text-anchor="middle" font-size="13" font-weight="600" fill="#4A1B0C">CDI-5 - generate_cdi_queries</text>
+  <text x="340" y="486" text-anchor="middle" font-size="11" fill="#993C1D">4-section CDI query format - ROUTINE / URGENT</text>
+
+  <!-- Gemini badge CDI-5 -->
+  <rect x="514" y="456" width="130" height="36" rx="6" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.5"/>
+  <text x="579" y="472" text-anchor="middle" font-size="12" font-weight="600" fill="#412402">Gemini 2.5 Flash</text>
+  <text x="579" y="486" text-anchor="middle" font-size="10" fill="#854F0B">temp=0.2</text>
+  <line x1="500" y1="474" x2="514" y2="474" stroke="#BA7517" stroke-width="1" marker-end="url(#arrow-amber)"/>
+
+  <line x1="340" y1="500" x2="340" y2="534" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- CDI-6 -->
+  <rect x="180" y="534" width="320" height="48" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="340" y="554" text-anchor="middle" font-size="13" font-weight="600" fill="#26215C">CDI-6 - write_tasks_and_notify</text>
+  <text x="340" y="572" text-anchor="middle" font-size="11" fill="#3C3489">FHIR Tasks - BigQuery - Pub/Sub - Firestore</text>
+
+  <!-- FHIR task write-back arrow -->
+  <path d="M230 582 L160 582 L160 44 L230 44" fill="none" stroke="#888" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <text x="148" y="315" text-anchor="middle" font-size="10" fill="#888" transform="rotate(-90,148,315)">FHIR Tasks written</text>
+
+  <!-- BigQuery output -->
+  <line x1="300" y1="582" x2="252" y2="624" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="168" y="624" width="168" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="252" y="642" text-anchor="middle" font-size="12" font-weight="600" fill="#042C53">BigQuery</text>
+  <text x="252" y="658" text-anchor="middle" font-size="10" fill="#185FA5">cdi_analytics.cdi_queries</text>
+
+  <!-- Pub/Sub output -->
+  <line x1="380" y1="582" x2="428" y2="624" stroke="#888" stroke-width="1" marker-end="url(#arrow)"/>
+  <rect x="344" y="624" width="168" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="428" y="642" text-anchor="middle" font-size="12" font-weight="600" fill="#042C53">Pub/Sub</text>
+  <text x="428" y="658" text-anchor="middle" font-size="10" fill="#185FA5">cdi-review-ready</text>
+
+  <!-- Cloud Scheduler -->
+  <rect x="22" y="534" width="130" height="48" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="87" y="554" text-anchor="middle" font-size="12" font-weight="600" fill="#2C2C2A">Cloud Scheduler</text>
+  <text x="87" y="572" text-anchor="middle" font-size="10" fill="#5F5E5A">02:00 UTC nightly</text>
+  <line x1="152" y1="558" x2="180" y2="558" stroke="#888" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <rect x="40" y="700" width="12" height="12" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="58" y="711" font-size="11" fill="#444">Pipeline step</text>
+  <rect x="160" y="700" width="12" height="12" rx="2" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="178" y="711" font-size="11" fill="#444">Gemini (LLM)</text>
+  <rect x="280" y="700" width="12" height="12" rx="2" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="298" y="711" font-size="11" fill="#444">GCP output</text>
+  <rect x="390" y="700" width="12" height="12" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="408" y="711" font-size="11" fill="#444">Scheduler / storage</text>
+</svg>

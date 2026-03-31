@@ -21,44 +21,7 @@ This agent automates the signal detection and query generation work that CDI spe
 
 ## Architecture
 
-```
-Inpatient Encounter (FHIR R4)
-         │
-         ▼
-┌─────────────────────────────────────────────────────────┐
-│                    CDI Agent Pipeline                    │
-│                                                         │
-│  CDI-1: load_encounter_record                           │
-│         └─ FHIR $search: Encounter + all linked         │
-│            resources (Condition, Observation,           │
-│            MedicationRequest, DiagnosticReport,         │
-│            Procedure)                                   │
-│                                                         │
-│  CDI-2: extract_coded_diagnoses                         │
-│         └─ Parse Conditions → CodedDiagnosisIndex       │
-│            (ICD-10, POA flags, diagnosis roles)         │
-│                                                         │
-│  CDI-3: identify_clinical_signals          ┐            │
-│         └─ Gemini scans labs, meds,        │ Gemini     │
-│            vitals, procedures for          │ 2.5 Flash  │
-│            5 signal categories             ┘            │
-│                                                         │
-│  CDI-4: match_signals_to_diagnoses                      │
-│         └─ Cross-reference signals vs coded dx          │
-│            Confidence gate: < 0.7 → Firestore only      │
-│                                                         │
-│  CDI-5: generate_cdi_queries               ┐            │
-│         └─ Gemini generates structured     │ Gemini     │
-│            physician query for each gap    │ 2.5 Flash  │
-│            (4-section CDI format)          ┘            │
-│                                                         │
-│  CDI-6: write_tasks_and_notify                          │
-│         ├─ FHIR Task resources (48hr response window)   │
-│         ├─ BigQuery audit log                           │
-│         ├─ Pub/Sub notification                         │
-│         └─ Firestore (low-confidence signals)           │
-└─────────────────────────────────────────────────────────┘
-```
+![HC-6 CDI Agent Architecture](docs/architecture.svg)
 
 ---
 
