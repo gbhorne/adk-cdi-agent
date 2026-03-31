@@ -1,6 +1,4 @@
-# HC-6 — Clinical Documentation Integrity (CDI) Agent
-
-> **Healthcare Agentic AI Portfolio · Project 6 of 9**
+# Clinical Documentation Integrity (CDI) Agent
 
 A production-grade agentic pipeline built on **Google ADK + Gemini** that analyzes inpatient hospital encounters for clinical documentation gaps, undocumented diagnoses, and present-on-admission (POA) classification issues. The agent generates structured CDI physician queries and writes them as **FHIR R4 Task resources** for clinical review.
 
@@ -29,10 +27,7 @@ This agent automates the signal detection and query generation work that CDI spe
 
 ## Architecture
 
-![HC-6 CDI Agent Architecture](docs/architecture.svg)
-
-### ADK Web UI — full trace
-![ADK Web UI trace view](docs/adk_web_ui.png)
+![CDI Agent Architecture](docs/architecture.svg)
 
 ---
 
@@ -122,21 +117,6 @@ Synthetic inpatient with designed CDI signal coverage:
 | Lab | WBC 14,200 /uL | SIRS / Infection | A41.9 | 0.75 |
 | POA | CKD coded POA=U | POA clarification needed | N18.3 | 0.90 |
 | Specificity | HbA1c 8.4% + E11.9 coded | DM specificity improvement | E11.65 | 0.80 |
-
----
-
-## Related Projects
-
-| Project | Repo | Description |
-|---------|------|-------------|
-| HC-1 CDSS | [adk-cdss-agent](https://github.com/gbhorne/adk-cdss-agent) | Clinical Decision Support System |
-| HC-2 Prior Auth | [adk-prior-auth-agent](https://github.com/gbhorne/adk-prior-auth-agent) | Prior Authorization Agent |
-
----
-
-## Portfolio
-
-Part of a 21-project Healthcare + Security + Retail + Financial AI portfolio built on Google ADK and LangGraph. See the full roadmap at [gbhorne](https://github.com/gbhorne).
 
 ---
 
