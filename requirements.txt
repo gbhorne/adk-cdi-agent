@@ -1,0 +1,25 @@
+# HC-6 CDI Agent dependencies
+
+# Google ADK
+google-adk>=0.4.0
+
+# GCP clients
+google-cloud-aiplatform>=1.49.0
+google-cloud-bigquery>=3.17.0
+google-cloud-firestore>=2.16.0
+google-cloud-pubsub>=2.21.0
+google-auth>=2.29.0
+google-auth-httplib2>=0.2.0
+
+# FHIR / HTTP
+requests>=2.31.0
+
+# Data validation
+pydantic>=2.6.0
+
+# Environment
+python-dotenv>=1.0.0
+
+# Cloud Run entry point
+fastapi>=0.110.0
+uvicorn>=0.29.0
